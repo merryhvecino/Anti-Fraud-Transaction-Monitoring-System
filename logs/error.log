@@ -1,0 +1,7 @@
+2025-08-22 17:51:40 [ERROR]: Database initialization failed: {"code":"ECONNREFUSED"}
+AggregateError [ECONNREFUSED]: 
+    at C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Database.initialize (C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\backend\config\database.js:27:22)
+    at async AFTMSServer.initializeDatabase (C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-new.js:292:7)
+    at async AFTMSServer.initialize (C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-new.js:351:7)

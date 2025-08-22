@@ -1,0 +1,23 @@
+2025-08-22 17:53:17 [ERROR]: uncaughtException: listen EADDRINUSE: address already in use :::5000
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-demo.js:299:21
+    at new Promise (<anonymous>)
+    at AFTMSDemoServer.startServer (C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-demo.js:298:13)
+    at AFTMSDemoServer.initialize (C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-demo.js:339:18)
+    at Object.<anonymous> (C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-demo.js:352:14)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10) {"error":{"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":5000},"exception":true,"date":"Fri Aug 22 2025 17:53:17 GMT+1200 (New Zealand Standard Time)","process":{"pid":7072,"uid":null,"gid":null,"cwd":"C:\\Users\\mdvec\\anaconda3\\envs\\unikoh\\MSE\\PROJECTS\\Anti-Fraud Transaction Monitoring System (AF-TMS)","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v20.19.3","argv":["C:\\Program Files\\nodejs\\node.exe","C:\\Users\\mdvec\\anaconda3\\envs\\unikoh\\MSE\\PROJECTS\\Anti-Fraud Transaction Monitoring System (AF-TMS)\\server-demo.js"],"memoryUsage":{"rss":49311744,"heapTotal":18583552,"heapUsed":10222104,"external":2129636,"arrayBuffers":16659}},"os":{"loadavg":[0,0,0],"uptime":617316.312},"trace":[{"column":16,"file":"node:net","function":"Server.setupListenHandle [as _listen2]","line":1908,"method":"setupListenHandle [as _listen2]","native":false},{"column":12,"file":"node:net","function":"listenInCluster","line":1965,"method":null,"native":false},{"column":7,"file":"node:net","function":"Server.listen","line":2067,"method":"listen","native":false},{"column":21,"file":"AF-TMS)\\server-demo.js","function":"C:\\Users\\mdvec\\anaconda3\\envs\\unikoh\\MSE\\PROJECTS\\Anti-Fraud Transaction Monitoring System","line":299,"method":null,"native":false},{"column":null,"file":null,"function":"new Promise","line":null,"method":null,"native":false},{"column":13,"file":"AF-TMS)\\server-demo.js","function":"AFTMSDemoServer.startServer (C:\\Users\\mdvec\\anaconda3\\envs\\unikoh\\MSE\\PROJECTS\\Anti-Fraud Transaction Monitoring System","line":298,"method":"startServer (C:\\Users\\mdvec\\anaconda3\\envs\\unikoh\\MSE\\PROJECTS\\Anti-Fraud Transaction Monitoring System","native":false},{"column":18,"file":"AF-TMS)\\server-demo.js","function":"AFTMSDemoServer.initialize (C:\\Users\\mdvec\\anaconda3\\envs\\unikoh\\MSE\\PROJECTS\\Anti-Fraud Transaction Monitoring System","line":339,"method":"initialize (C:\\Users\\mdvec\\anaconda3\\envs\\unikoh\\MSE\\PROJECTS\\Anti-Fraud Transaction Monitoring System","native":false},{"column":14,"file":"AF-TMS)\\server-demo.js","function":"Object.<anonymous> (C:\\Users\\mdvec\\anaconda3\\envs\\unikoh\\MSE\\PROJECTS\\Anti-Fraud Transaction Monitoring System","line":352,"method":"<anonymous> (C:\\Users\\mdvec\\anaconda3\\envs\\unikoh\\MSE\\PROJECTS\\Anti-Fraud Transaction Monitoring System","native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1529,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1613,"method":".js","native":false}]}
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-demo.js:299:21
+    at new Promise (<anonymous>)
+    at AFTMSDemoServer.startServer (C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-demo.js:298:13)
+    at AFTMSDemoServer.initialize (C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-demo.js:339:18)
+    at Object.<anonymous> (C:\Users\mdvec\anaconda3\envs\unikoh\MSE\PROJECTS\Anti-Fraud Transaction Monitoring System (AF-TMS)\server-demo.js:352:14)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)

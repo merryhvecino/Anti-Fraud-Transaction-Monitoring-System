@@ -1,0 +1,141 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: af-tms-postgres
+    environment:
+      POSTGRES_DB: af_tms_db
+      POSTGRES_USER: af_tms_user
+      POSTGRES_PASSWORD: af_tms_secure_password_2024
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    networks:
+      - af-tms-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U af_tms_user -d af_tms_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: af-tms-redis
+    command: redis-server --appendonly yes --requirepass af_tms_redis_password_2024
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - af-tms-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # AF-TMS Application
+  af-tms-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: af-tms-app
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      
+      # Database Configuration
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: af_tms_db
+      DB_USER: af_tms_user
+      DB_PASSWORD: af_tms_secure_password_2024
+      
+      # Redis Configuration
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: af_tms_redis_password_2024
+      
+      # Security
+      JWT_SECRET: af_tms_jwt_super_secure_secret_key_2024_production
+      ENCRYPTION_KEY: af_tms_encryption_key_32_chars_2024
+      SESSION_SECRET: af_tms_session_secret_key_2024
+      BCRYPT_ROUNDS: 12
+      
+      # Application
+      FRONTEND_URL: http://localhost:5000
+      RATE_LIMIT_WINDOW_MS: 900000
+      RATE_LIMIT_MAX_REQUESTS: 100
+      
+      # Logging
+      LOG_LEVEL: info
+      LOG_FILE: logs/af-tms.log
+      
+      # New Zealand Compliance
+      NZ_COMPLIANCE_MODE: true
+      NZ_FIU_REPORTING_ENDPOINT: https://fiu.police.govt.nz/api
+      
+      # Machine Learning (placeholder)
+      ML_SERVICE_ENABLED: false
+      ML_SERVICE_URL: http://localhost:8000
+      
+    ports:
+      - "5000:5000"
+    volumes:
+      - app_logs:/app/logs
+    networks:
+      - af-tms-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: pgAdmin for database management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: af-tms-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@af-tms.nz
+      PGADMIN_DEFAULT_PASSWORD: pgadmin_password_2024
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "8080:80"
+    networks:
+      - af-tms-network
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    profiles:
+      - admin
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  app_logs:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  af-tms-network:
+    driver: bridge
+    name: af-tms-network
